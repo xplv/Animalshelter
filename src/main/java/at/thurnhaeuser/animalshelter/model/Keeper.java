@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by yanik on 4/10/15.
  */
+@Entity
 @Table(name = "keeper")
 public class Keeper extends BaseEntity{
     @Getter @Setter
