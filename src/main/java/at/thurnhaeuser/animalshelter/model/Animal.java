@@ -22,7 +22,7 @@ public class Animal extends BaseEntity{
     private String name;
     @NotNull @ManyToOne @JoinColumn(nullable = false)
     private Keeper keeper;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter @Setter
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Animal bestFriend;
     @NotNull @ManyToOne @JoinColumn(nullable = false)
     private Compound compound;
@@ -33,22 +33,19 @@ public class Animal extends BaseEntity{
         super();
         this.species = species;
         this.name = name;
-        this.keeper = keeper;
-        this.bestFriend = bestFriend;
+        setKeeper(keeper);
+        setBestFriend(bestFriend);
         this.compound = compound;
         this.birthDate = birthDate;
     }
 
-    public  Animal(){
-        super();
-    }
-
-    public Keeper getKeeper() {
-        return keeper;
-    }
-
-    public Compound getCompound() {
-        return compound;
+    public void setBestFriend(Animal animal){
+        if(animal != null) {
+            this.bestFriend = animal;
+            if (animal.bestFriend != this) {
+                animal.bestFriend = this;
+            }
+        }
     }
 
     public void setKeeper(Keeper keeper) {
@@ -63,5 +60,17 @@ public class Animal extends BaseEntity{
         if(compound.getAnimals().contains(this)){
             compound.addAnimal(this);
         }
+    }
+
+    public Keeper getKeeper() {
+        return keeper;
+    }
+
+    public Animal getBestFriend() {
+        return bestFriend;
+    }
+
+    public Compound getCompound() {
+        return compound;
     }
 }

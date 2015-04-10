@@ -32,12 +32,11 @@ public class Keeper extends BaseEntity{
         super();
     }
 
-    public Keeper( String firstName, String lastName, LocalDate birthDate, LocalDate employedSince, ArrayList<Animal> animals) {
+    public Keeper( String firstName, String lastName, LocalDate birthDate, LocalDate employedSince) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.employedSince = employedSince;
-        this.animals = animals;
     }
     public List<Animal> getAnimals() {
         return Collections.unmodifiableList(animals);

@@ -19,12 +19,16 @@ public class Compound extends BaseEntity{
     @Getter @Setter
     private int maxAnimals;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "compound", fetch = FetchType.EAGER)
-    private ArrayList<Animal> animals;
+    private ArrayList<Animal> animals = new ArrayList<Animal>();
 
     public Compound() {
         super();
     }
 
+    public Compound(double sizeInSqm, int maxAnimals) {
+        this.sizeInSqm = sizeInSqm;
+        this.maxAnimals = maxAnimals;
+    }
 
     public List<Animal> getAnimals() {
         return Collections.unmodifiableList(animals);
