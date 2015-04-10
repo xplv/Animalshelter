@@ -3,6 +3,8 @@ package at.thurnhaeuser.pflegeheim.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +18,7 @@ public class Compound extends BaseEntity{
     private double sizeInSqm;
     @Getter @Setter
     private int maxAnimals;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "compound", fetch = FetchType.EAGER)
     private ArrayList<Animal> animals;
 
     public Compound() {
