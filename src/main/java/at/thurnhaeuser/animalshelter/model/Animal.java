@@ -11,6 +11,7 @@ import java.time.LocalDate;
 /**
  * Created by yanik on 4/10/15.
  */
+@Entity
 @Table(name = "animal")
 public class Animal extends BaseEntity{
     public static enum AnimalSpecies{Hund,Katze,Meerschweinchen}
