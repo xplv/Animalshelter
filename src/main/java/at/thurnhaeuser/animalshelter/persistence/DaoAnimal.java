@@ -1,9 +1,9 @@
 package at.thurnhaeuser.animalshelter.persistence;
 
 import at.thurnhaeuser.animalshelter.model.Animal;
-import at.thurnhaeuser.animalshelter.persistence.Dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -16,16 +16,19 @@ public class DaoAnimal implements Dao<Animal> {
 
     @Override
     public Animal persist(Animal entity) {
-        return null;
+        entityManager.persist(entity);
+        return entity;
     }
 
     @Override
     public Animal findById(int id) {
-        return null;
+        return entityManager.find(Animal.class, id);
     }
 
     @Override
     public List<Animal> findAll() {
-        return null;
+        Query query = entityManager.createQuery("SELECT a fom Animal a", Animal.class);
+        return query.getResultList();
     }
+
 }
