@@ -24,7 +24,7 @@ public class Keeper extends BaseEntity{
     @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
     private LocalDate employedSince;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "animals", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "keeper", fetch = FetchType.EAGER)
     private ArrayList<Animal> animals =new ArrayList<Animal>();
 
     public Keeper() {
@@ -49,6 +49,5 @@ public class Keeper extends BaseEntity{
         }
 
     }
-
 
 }

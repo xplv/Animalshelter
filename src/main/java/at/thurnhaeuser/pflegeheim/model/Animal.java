@@ -19,11 +19,11 @@ public class Animal extends BaseEntity{
     private AnimalSpecies species;
     @Getter @Setter
     private String name;
-    @NotNull @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @NotNull @ManyToOne @JoinColumn(nullable = false)
     private Keeper keeper;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter @Setter
     private Animal bestFriend;
-    @NotNull @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @JoinColumn(nullable = false)
+    @NotNull @ManyToOne @JoinColumn(nullable = false)
     private Compound compound;
     @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
     private LocalDate birthDate;
@@ -52,9 +52,15 @@ public class Animal extends BaseEntity{
 
     public void setKeeper(Keeper keeper) {
         this.keeper = keeper;
+        if(keeper.getAnimals().contains(this)){
+            keeper.addAnimal(this);
+        }
     }
 
     public void setCompound(Compound compound) {
         this.compound = compound;
+        if(compound.getAnimals().contains(this)){
+            compound.addAnimal(this);
+        }
     }
 }
