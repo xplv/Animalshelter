@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Created by yanik on 4/10/15.
  */
+@Table(name="compound")
 public class Compound extends BaseEntity{
     @Getter @Setter
     private double sizeInSqm;
