@@ -16,7 +16,7 @@ public class DaoCompound implements Dao<Compound> {
 
     @Override
     public Compound persist(Compound entity) {
-        entityManager.persist(entity);
+        entityManager.persist(entity); //INSERT eines Compound Datensatzes
         return entity;
     }
 

@@ -16,7 +16,7 @@ public class DaoAnimal implements Dao<Animal> {
 
     @Override
     public Animal persist(Animal entity) {
-        entityManager.persist(entity);
+        entityManager.persist(entity); //INSERT eines Animal Datensatzes
         return entity;
     }
 

@@ -16,7 +16,7 @@ public class DaoKeeper implements Dao<Keeper> {
 
     @Override
     public Keeper persist(Keeper entity) {
-        entityManager.persist(entity);
+        entityManager.persist(entity);  //INSERT eines Keeper Datensatzes
         return entity;
     }
 
