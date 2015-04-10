@@ -40,6 +40,4 @@ public class Compound extends BaseEntity{
             animal.setCompound(this);
         }
     }
-
-
 }

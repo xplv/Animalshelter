@@ -3,6 +3,7 @@ package at.thurnhaeuser.animalshelter.model;
 import at.thurnhaeuser.animalshelter.LocalDatePersistenceConverter;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,20 +14,27 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "animal")
-public class Animal extends BaseEntity{
-    public static enum AnimalSpecies{Hund,Katze,Meerschweinchen}
+public class Animal extends BaseEntity {
+    public static enum AnimalSpecies {Hund, Katze, Meerschweinchen}
 
-    @NotNull @Getter @Setter
+    @NotNull
+    @Setter
     private AnimalSpecies species;
-    @Getter @Setter
+    @Setter
     private String name;
-    @NotNull @ManyToOne @JoinColumn(nullable = false)
+    @NotNull
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Keeper keeper;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Animal bestFriend;
-    @NotNull @ManyToOne @JoinColumn(nullable = false)
+    @NotNull
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Compound compound;
-    @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
+    @Convert(converter = LocalDatePersistenceConverter.class)
+    @Getter
+    @Setter
     private LocalDate birthDate;
 
     public Animal(AnimalSpecies species, String name, Keeper keeper, Animal bestFriend, Compound compound, LocalDate birthDate) {
@@ -35,12 +43,12 @@ public class Animal extends BaseEntity{
         this.name = name;
         setKeeper(keeper);
         setBestFriend(bestFriend);
-        this.compound = compound;
+        setCompound(compound);
         this.birthDate = birthDate;
     }
 
-    public void setBestFriend(Animal animal){
-        if(animal != null) {
+    public void setBestFriend(Animal animal) {
+        if (animal != null) {
             this.bestFriend = animal;
             if (animal.bestFriend != this) {
                 animal.bestFriend = this;
@@ -50,20 +58,28 @@ public class Animal extends BaseEntity{
 
     public void setKeeper(Keeper keeper) {
         this.keeper = keeper;
-        if(keeper.getAnimals().contains(this)){
+        if (keeper.getAnimals() != this) {
             keeper.addAnimal(this);
         }
     }
 
     public void setCompound(Compound compound) {
         this.compound = compound;
-        if(compound.getAnimals().contains(this)){
+        if (compound.getAnimals() != this) {
             compound.addAnimal(this);
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Keeper getKeeper() {
         return keeper;
+    }
+
+    public AnimalSpecies getSpecies() {
+        return species;
     }
 
     public Animal getBestFriend() {

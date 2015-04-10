@@ -2,6 +2,9 @@ package at.thurnhaeuser.animalshelter.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.StandardToStringStyle;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**

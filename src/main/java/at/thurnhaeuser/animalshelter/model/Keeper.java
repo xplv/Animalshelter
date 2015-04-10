@@ -1,6 +1,8 @@
 package at.thurnhaeuser.animalshelter.model;
 
 import at.thurnhaeuser.animalshelter.LocalDatePersistenceConverter;
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,9 +18,9 @@ import java.util.List;
 @Entity
 @Table(name = "keeper")
 public class Keeper extends BaseEntity{
-    @Getter @Setter
+    @Setter
     private String firstName;
-    @Getter @Setter
+    @Setter
     private String lastName;
     @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
     private LocalDate birthDate;
@@ -49,5 +51,14 @@ public class Keeper extends BaseEntity{
         }
 
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
 
 }
