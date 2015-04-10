@@ -28,8 +28,8 @@ public class Animal extends BaseEntity{
     @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
     private LocalDate birthDate;
 
-    public Animal(Long id, AnimalSpecies species, String name, Keeper keeper, Animal bestFriend, Compound compound, LocalDate birthDate) {
-        super(id);
+    public Animal(AnimalSpecies species, String name, Keeper keeper, Animal bestFriend, Compound compound, LocalDate birthDate) {
+        super();
         this.species = species;
         this.name = name;
         this.keeper = keeper;
