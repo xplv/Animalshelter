@@ -3,6 +3,7 @@ package at.thurnhaeuser.animalshelter.persistence;
 import at.thurnhaeuser.animalshelter.model.Animal;
 import at.thurnhaeuser.animalshelter.model.Compound;
 import at.thurnhaeuser.animalshelter.model.Keeper;
+import at.thurnhaeuser.animalshelter.model.Toy;
 
 import javax.persistence.EntityManager;
 import java.util.HashMap;
@@ -35,5 +36,9 @@ public class JpaPersistenceFactoryImpl implements JpaPersistenceFactory {
 
     public Dao<Compound> daoCompound() {
         return (Dao<Compound>) daoMap.get(Compound.class);
+    }
+
+    public Dao<Toy> daoToy() {
+        return (Dao<Toy>) daoMap.get(Toy.class);
     }
 }

@@ -42,5 +42,6 @@ public class JpaPersistenceFactoryTest {
         Assert.assertNotNull(jpaPersistenceFactory.daoAnimal());
         Assert.assertNotNull(jpaPersistenceFactory.daoCompound());
         Assert.assertNotNull(jpaPersistenceFactory.daoKeeper());
+        Assert.assertNotNull(jpaPersistenceFactory.daoToy());
     }
 }
