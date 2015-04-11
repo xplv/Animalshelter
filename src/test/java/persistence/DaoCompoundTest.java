@@ -25,7 +25,7 @@ public class DaoCompoundTest extends AbstractDaoTest {
         Assert.assertNotNull(compound.getId());
     }
 
-    @Test
+
     private Compound buildSampleCompound(){
         Compound compound = new Compound(46.7,150);
         compound.setSizeInSqm(150.5);
