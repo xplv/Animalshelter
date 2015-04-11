@@ -19,8 +19,7 @@ public class Compound extends BaseEntity{
     private double sizeInSqm;
     @Getter @Setter
     private int maxAnimals;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Collection<Animal> animals = new ArrayList<>();
+
 
     public Compound() {
         super();
@@ -29,13 +28,5 @@ public class Compound extends BaseEntity{
     public Compound(double sizeInSqm, int maxAnimals) {
         this.sizeInSqm = sizeInSqm;
         this.maxAnimals = maxAnimals;
-    }
-
-    public Collection<Animal> getAnimals() {
-        return Collections.unmodifiableCollection(animals);
-    }
-
-    public void addAnimal(Animal animal) {
-        animals.add(animal);
     }
 }

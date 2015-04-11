@@ -8,6 +8,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by yanik on 4/10/15.
@@ -28,10 +30,18 @@ public class Animal extends BaseEntity {
     @Setter
     private LocalDate birthDate;
 
-    public Animal(AnimalSpecies species, String name, LocalDate birthDate) {
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter @Setter
+    private Compound compound;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter @Setter
+    private Keeper keeper;
+
+    public Animal(AnimalSpecies species, String name, LocalDate birthDate,Keeper keeper,Compound compound) {
         super();
         this.species = species;
         this.name = name;
         this.birthDate = birthDate;
+        this.keeper = keeper;
+        this.compound = compound;
     }
 }
