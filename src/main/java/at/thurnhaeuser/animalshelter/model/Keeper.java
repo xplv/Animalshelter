@@ -18,9 +18,9 @@ import java.util.List;
 @Entity
 @Table(name = "keeper")
 public class Keeper extends BaseEntity{
-    @Setter
+    @Getter @Setter
     private String firstName;
-    @Setter
+    @Getter @Setter
     private String lastName;
     @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
     private LocalDate birthDate;
@@ -51,14 +51,4 @@ public class Keeper extends BaseEntity{
         }
 
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-
 }

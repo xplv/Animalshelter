@@ -18,9 +18,9 @@ public class Animal extends BaseEntity {
     public static enum AnimalSpecies {Hund, Katze, Meerschweinchen}
 
     @NotNull
-    @Setter
+    @Getter @Setter
     private AnimalSpecies species;
-    @Setter
+    @Getter @Setter
     private String name;
     @NotNull
     @ManyToOne
@@ -33,8 +33,7 @@ public class Animal extends BaseEntity {
     @JoinColumn(nullable = false)
     private Compound compound;
     @Convert(converter = LocalDatePersistenceConverter.class)
-    @Getter
-    @Setter
+    @Getter @Setter
     private LocalDate birthDate;
 
     public Animal(AnimalSpecies species, String name, Keeper keeper, Animal bestFriend, Compound compound, LocalDate birthDate) {
@@ -70,16 +69,8 @@ public class Animal extends BaseEntity {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Keeper getKeeper() {
         return keeper;
-    }
-
-    public AnimalSpecies getSpecies() {
-        return species;
     }
 
     public Animal getBestFriend() {
