@@ -36,6 +36,9 @@ public class Animal extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter @Setter
     private Keeper keeper;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)@Getter @Setter
+    private Collection<Toy> toy = new ArrayList<>();
+
     public Animal(AnimalSpecies species, String name, LocalDate birthDate,Keeper keeper,Compound compound) {
         super();
         this.species = species;
