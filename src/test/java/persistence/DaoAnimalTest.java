@@ -48,7 +48,6 @@ public class DaoAnimalTest extends AbstractDaoTest  {
         for(Animal a : animals){
             daoAnimal.persist(a);
         }
-
         Assert.assertArrayEquals(animals.toArray(),daoAnimal.findAll().toArray());
     }
 }
