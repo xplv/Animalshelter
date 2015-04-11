@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Compound extends BaseEntity{
     @Getter @Setter
     private int maxAnimals;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "compound", fetch = FetchType.EAGER)
-    private ArrayList<Animal> animals = new ArrayList<Animal>();
+    private Collection<Animal> animals = new ArrayList<>();
 
     public Compound() {
         super();
@@ -30,8 +31,8 @@ public class Compound extends BaseEntity{
         this.maxAnimals = maxAnimals;
     }
 
-    public List<Animal> getAnimals() {
-        return Collections.unmodifiableList(animals);
+    public Collection<Animal> getAnimals() {
+        return Collections.unmodifiableCollection(animals);
     }
 
     public void addAnimal(Animal animal) {

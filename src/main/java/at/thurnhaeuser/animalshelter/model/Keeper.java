@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Keeper extends BaseEntity{
     private LocalDate employedSince;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "keeper", fetch = FetchType.EAGER)
-    private ArrayList<Animal> animals =new ArrayList<Animal>();
+    private Collection<Animal> animals =new ArrayList<>();
 
     public Keeper() {
         super();
@@ -40,8 +41,8 @@ public class Keeper extends BaseEntity{
         this.birthDate = birthDate;
         this.employedSince = employedSince;
     }
-    public List<Animal> getAnimals() {
-        return Collections.unmodifiableList(animals);
+    public Collection<Animal> getAnimals() {
+        return Collections.unmodifiableCollection(animals);
     }
 
     public void addAnimal(Animal animal) {
