@@ -12,7 +12,7 @@ import java.time.LocalDate;
 /**
  * Created by yanik on 4/11/15.
  */
-public class DaoAnimalTest {
+public class DaoAnimalTest extends AbstractDaoTest  {
     private DaoAnimal daoAnimal;
 
     @Before
