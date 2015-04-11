@@ -30,13 +30,13 @@ public class Animal extends BaseEntity {
     @Setter
     private LocalDate birthDate;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter @Setter
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
     private Compound compound;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter @Setter
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
     private Keeper keeper;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)@Getter @Setter
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
     private Collection<Toy> toy = new ArrayList<>();
 
     public Animal(AnimalSpecies species, String name, LocalDate birthDate,Keeper keeper,Compound compound) {
@@ -46,5 +46,17 @@ public class Animal extends BaseEntity {
         this.birthDate = birthDate;
         this.keeper = keeper;
         this.compound = compound;
+    }
+
+    public Compound getCompound() {
+        return compound;
+    }
+
+    public Collection<Toy> getToy() {
+        return toy;
+    }
+
+    public Keeper getKeeper() {
+        return keeper;
     }
 }

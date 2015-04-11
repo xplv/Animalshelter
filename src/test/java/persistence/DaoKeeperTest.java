@@ -1,6 +1,7 @@
 package persistence;
 
 import at.thurnhaeuser.animalshelter.model.Animal;
+import at.thurnhaeuser.animalshelter.model.Compound;
 import at.thurnhaeuser.animalshelter.model.Keeper;
 import at.thurnhaeuser.animalshelter.persistence.DaoAnimal;
 import at.thurnhaeuser.animalshelter.persistence.DaoKeeper;
@@ -30,28 +31,28 @@ public class DaoKeeperTest extends AbstractDaoTest {
     @Test
     public void persistKeeperWithAnimal() {
         Keeper k1 = new Keeper("Max", "Muster", LocalDate.of(1234, 12, 3), LocalDate.now());
-        Animal a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen, "Blacky", LocalDate.now());
-        k1.addAnimal(a1);
+        Compound c1 = new Compound(100,10);
+        Animal a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen, "Blacky", LocalDate.now(),k1,c1);
+
         daoKeeper.persist(k1);
         Assert.assertEquals(k1,daoKeeper.findById(k1.getId()));
-        Assert.assertTrue(daoKeeper.findById(k1.getId()).getAnimals().contains(a1));
+        Assert.assertEquals(a1.getKeeper(), daoKeeper.findById(k1.getId()));
     }
     @Test
     public void persistKeeperWithMoreAnimals(){
         Keeper k1 = new Keeper("Max", "Muster", LocalDate.of(1234, 12, 3), LocalDate.now());
-        Animal a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen, "Blacky", LocalDate.now());
-        Animal a2 = new Animal(Animal.AnimalSpecies.Hund, "Bello", LocalDate.now());
-        Animal a3 = new Animal(Animal.AnimalSpecies.Katze, "Socke", LocalDate.now());
-        k1.addAnimal(a1);
-        k1.addAnimal(a2);
-        k1.addAnimal(a3);
+        Compound c1 = new Compound(100,10);
+
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.add(new Animal(Animal.AnimalSpecies.Meerschweinchen, "Blacky", LocalDate.now(),k1,c1));
+        animals.add(new Animal(Animal.AnimalSpecies.Hund, "Bello", LocalDate.now(),k1,c1));
+        animals.add(new Animal(Animal.AnimalSpecies.Katze, "Socke", LocalDate.now(),k1,c1));
 
         daoKeeper.persist(k1);
         Keeper k1dao = daoKeeper.findById(k1.getId());
 
-        Assert.assertEquals(k1.getAnimals().size(), k1dao.getAnimals().size());
-        for(Animal a : k1.getAnimals()){
-            Assert.assertTrue(k1dao.getAnimals().contains(a));
+        for(Animal a : animals){
+            Assert.assertEquals(a.getKeeper(),daoKeeper.findById(k1.getId()));
         }
     }
 

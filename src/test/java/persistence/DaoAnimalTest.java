@@ -24,22 +24,28 @@ public class DaoAnimalTest extends AbstractDaoTest  {
 
     @Test
     public void persistAnimal(){
-        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Mauzi",LocalDate.now());
+        Keeper k1 = new Keeper("Januar","Februar",LocalDate.now(),LocalDate.now());
+        Compound c1 = new Compound(100,10);
+        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Mauzi",LocalDate.now(),k1,c1);
         daoAnimal.persist(a1);
     }
 
     @Test
     public void persistAnimalAndFindIt(){
-        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Miaumiau",LocalDate.now());
+        Keeper k1 = new Keeper("Januar","Februar",LocalDate.now(),LocalDate.now());
+        Compound c1 = new Compound(100,10);
+        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Mauzi",LocalDate.now(),k1,c1);
         daoAnimal.persist(a1);
         Assert.assertEquals(a1,daoAnimal.findById(a1.getId()));
     }
     @Test
     public void persistAnimalAndFindAll(){
         ArrayList<Animal> animals = new ArrayList<>();
-        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Miaumiau",LocalDate.now());
-        Animal a2 = new Animal(Animal.AnimalSpecies.Hund,"Wuffwuff",LocalDate.now());
-        Animal a3 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"quiekquiek",LocalDate.now());
+        Keeper k1 = new Keeper("Januar","Februar",LocalDate.now(),LocalDate.now());
+        Compound c1 = new Compound(100,10);
+        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Miaumiau",LocalDate.now(),k1,c1);
+        Animal a2 = new Animal(Animal.AnimalSpecies.Hund,"Wuffwuff",LocalDate.now(),k1,c1);
+        Animal a3 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"quiekquiek",LocalDate.now(),k1,c1);
 
         animals.add(a1);
         animals.add(a2);
