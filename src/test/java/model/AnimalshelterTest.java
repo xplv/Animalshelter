@@ -16,19 +16,10 @@ public class AnimalshelterTest {
     public void createAnimal(){
         Keeper k1 = new Keeper("hans","muster", LocalDate.of(1996, 12, 30),LocalDate.of(1996,12,30));
         Compound c1 = new Compound(100,10);
-        Animal a1 = new Animal(Animal.AnimalSpecies.Hund,"Bello",k1,null,c1,LocalDate.now());
+        Animal a1 = new Animal(Animal.AnimalSpecies.Hund,"Bello",LocalDate.now());
+        k1.addAnimal(a1);
+        c1.addAnimal(a1);
         assertTrue(k1.getAnimals().contains(a1));
         assertTrue(c1.getAnimals().contains(a1));
     }
-    @Test
-    public void createAnimalWithBestFriend(){
-        Keeper k1 = new Keeper("hans","muster", LocalDate.of(1996, 12, 30),LocalDate.of(1996,12,30));
-        Compound c1 = new Compound(100,10);
-        Animal a1 = new Animal(Animal.AnimalSpecies.Hund,"Bello",k1,null,c1,LocalDate.now());
-        Animal a2 = new Animal(Animal.AnimalSpecies.Katze,"Mauzi",k1,a1,c1,LocalDate.now());
-        assertTrue(a1.getBestFriend() == a2);
-        assertTrue(a2.getBestFriend() == a1);
-    }
-
-
 }

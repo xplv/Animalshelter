@@ -19,7 +19,7 @@ public class Compound extends BaseEntity{
     private double sizeInSqm;
     @Getter @Setter
     private int maxAnimals;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "compound", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<Animal> animals = new ArrayList<>();
 
     public Compound() {
@@ -37,8 +37,5 @@ public class Compound extends BaseEntity{
 
     public void addAnimal(Animal animal) {
         animals.add(animal);
-        if(animal.getCompound() != this){
-            animal.setCompound(this);
-        }
     }
 }

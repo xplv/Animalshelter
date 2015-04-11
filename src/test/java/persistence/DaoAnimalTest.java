@@ -24,7 +24,8 @@ public class DaoAnimalTest extends AbstractDaoTest  {
     public void persistAnimal(){
         Keeper k1 = new Keeper("Max","Muster", LocalDate.of(1996,1,23),LocalDate.now());
         Compound c1 = new Compound(100,10);
-        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Mauzi",k1,null,c1,LocalDate.now());
+        System.out.println(c1.getId());
+        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Mauzi",LocalDate.now());
         daoAnimal.persist(a1);
     }
 }
