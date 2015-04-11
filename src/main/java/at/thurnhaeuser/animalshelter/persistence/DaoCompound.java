@@ -27,7 +27,7 @@ public class DaoCompound implements Dao<Compound> {
 
     @Override
     public List<Compound> findAll() {
-        Query query = entityManager.createQuery("SELECT c from Compound", Compound.class);
+        Query query = entityManager.createQuery("SELECT c from Compound c", Compound.class);
         return query.getResultList();
     }
 }

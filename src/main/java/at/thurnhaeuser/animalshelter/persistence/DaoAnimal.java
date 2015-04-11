@@ -27,7 +27,7 @@ public class DaoAnimal implements Dao<Animal> {
 
     @Override
     public List<Animal> findAll() {
-        Query query = entityManager.createQuery("SELECT a fom Animal a", Animal.class);
+        Query query = entityManager.createQuery("SELECT a from Animal a", Animal.class);
         return query.getResultList();
     }
 

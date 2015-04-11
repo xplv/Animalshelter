@@ -27,7 +27,7 @@ public class DaoKeeper implements Dao<Keeper> {
 
     @Override
     public List<Keeper> findAll() {
-        Query query = entityManager.createQuery("SELECT k from Kepper", Keeper.class);
+        Query query = entityManager.createQuery("SELECT k from Kepper k", Keeper.class);
         return query.getResultList();
     }
 
