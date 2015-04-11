@@ -21,7 +21,7 @@ public class DaoAnimal implements Dao<Animal> {
     }
 
     @Override
-    public Animal findById(int id) {
+    public Animal findById(Long id) {
         return entityManager.find(Animal.class, id);
     }
 

@@ -21,7 +21,7 @@ public class DaoCompound implements Dao<Compound> {
     }
 
     @Override
-    public Compound findById(int id) {
+    public Compound findById(Long id) {
         return entityManager.find(Compound.class, id);
     }
 

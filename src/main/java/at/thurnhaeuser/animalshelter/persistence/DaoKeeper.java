@@ -21,7 +21,7 @@ public class DaoKeeper implements Dao<Keeper> {
     }
 
     @Override
-    public Keeper findById(int id) {
+    public Keeper findById(Long id) {
         return entityManager.find(Keeper.class, id);
     }
 

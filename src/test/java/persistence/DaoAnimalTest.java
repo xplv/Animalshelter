@@ -22,10 +22,14 @@ public class DaoAnimalTest extends AbstractDaoTest  {
 
     @Test
     public void persistAnimal(){
-        Keeper k1 = new Keeper("Max","Muster", LocalDate.of(1996,1,23),LocalDate.now());
-        Compound c1 = new Compound(100,10);
-        System.out.println(c1.getId());
         Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Mauzi",LocalDate.now());
         daoAnimal.persist(a1);
+    }
+
+    @Test
+    public void persistAnimalAndFindIt(){
+        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Miaumiau",LocalDate.now());
+        daoAnimal.persist(a1);
+        Animal a2 = daoAnimal.findById(a1.getId());
     }
 }

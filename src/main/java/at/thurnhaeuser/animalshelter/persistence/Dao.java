@@ -10,7 +10,7 @@ import java.util.List;
 public interface Dao<T extends BaseEntity> {
 
     T persist(T entity);
-    T findById(int id);
+    T findById(Long id);
     List<T> findAll();
 
 
