@@ -4,10 +4,12 @@ import at.thurnhaeuser.animalshelter.model.Animal;
 import at.thurnhaeuser.animalshelter.model.Compound;
 import at.thurnhaeuser.animalshelter.model.Keeper;
 import at.thurnhaeuser.animalshelter.persistence.DaoAnimal;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Created by yanik on 4/11/15.
@@ -31,5 +33,23 @@ public class DaoAnimalTest extends AbstractDaoTest  {
         Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Miaumiau",LocalDate.now());
         daoAnimal.persist(a1);
         Animal a2 = daoAnimal.findById(a1.getId());
+        Assert.assertEquals(a1,a2);
+    }
+    @Test
+    public void persistAnimalAndFindAll(){
+        ArrayList<Animal> animals = new ArrayList<>();
+        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Miaumiau",LocalDate.now());
+        Animal a2 = new Animal(Animal.AnimalSpecies.Hund,"Wuffwuff",LocalDate.now());
+        Animal a3 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"quiekquiek",LocalDate.now());
+
+        animals.add(a1);
+        animals.add(a2);
+        animals.add(a3);
+
+        for(Animal a : animals){
+            daoAnimal.persist(a);
+        }
+
+        Assert.assertArrayEquals(animals.toArray(),daoAnimal.findAll().toArray());
     }
 }
