@@ -24,6 +24,7 @@ public class JpaPersistenceFactoryImpl implements JpaPersistenceFactory {
         daoMap.put(Animal.class, new DaoAnimal(entityManager));
         daoMap.put(Keeper.class, new DaoKeeper(entityManager));
         daoMap.put(Compound.class, new DaoCompound(entityManager));
+        daoMap.put(Toy.class, new DaoToy(entityManager));
     }
 
     public Dao<Animal> daoAnimal() {
