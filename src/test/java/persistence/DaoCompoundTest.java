@@ -33,18 +33,9 @@ public class DaoCompoundTest extends AbstractDaoTest {
 
     @Test
     public void persistFindCompound(){
-        Compound compound = new Compound(150.3,50);
-        Animal animal1 = new Animal(Animal.AnimalSpecies.Hund,"Hansi", LocalDate.now());
-        Animal animal2 = new Animal(Animal.AnimalSpecies.Katze,"Franz", LocalDate.now());
-        Animal animal3 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Manfred", LocalDate.now());
-        compound.addAnimal(animal1);
-        compound.addAnimal(animal2);
-        compound.addAnimal(animal3);
-        rootDaoCompound.persist(compound);
-        Assert.assertEquals(rootDaoCompound.findById(compound.getId()).getAnimals().size(),3);
-        for(Animal a : compound.getAnimals()){
-            Assert.assertTrue(rootDaoCompound.findById(compound.getId()).getAnimals().contains(a));
-        }
+        Compound c1 = new Compound(150.3,50);
+        rootDaoCompound.persist(c1);
+        Assert.assertEquals(c1,rootDaoCompound.findById(c1.getId()));
     }
 
     @Test
