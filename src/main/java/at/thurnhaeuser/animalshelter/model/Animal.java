@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 /**
  * Created by yanik on 4/10/15.
@@ -18,6 +19,10 @@ import java.util.Collection;
 @Table(name = "animal")
 public class Animal extends BaseEntity {
     public static enum AnimalSpecies {Hund, Katze, Meerschweinchen}
+
+    @NotNull @Getter
+    @Column(nullable = false)
+    private String externalReference;
 
     @Getter
     @Setter
@@ -41,6 +46,7 @@ public class Animal extends BaseEntity {
 
     public Animal(AnimalSpecies species, String name, LocalDate birthDate,Keeper keeper,Compound compound) {
         super();
+        this.externalReference = UUID.randomUUID().toString();
         this.species = species;
         this.name = name;
         this.birthDate = birthDate;
