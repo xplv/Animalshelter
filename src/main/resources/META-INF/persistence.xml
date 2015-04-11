@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence  http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="AnimalshelterPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+    <class>at.thurnhaeuser.animalshelter.model.BaseEntity</class>
+    <class>at.thurnhaeuser.animalshelter.model.Compound</class>
+    <class>at.thurnhaeuser.animalshelter.model.Animal</class>
+    <class>at.thurnhaeuser.animalshelter.model.Keeper</class>
+
+    <properties>
+      <property name="hibernate.connection.autoReconnect" value="true"/>
+      <property name="hibernate.connection.autoReconnectForPools" value="true"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:database/simpleDb;create=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+      <property name="show_sql" value="true"/>
+      <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+    </properties>
+  </persistence-unit>
+</persistence>

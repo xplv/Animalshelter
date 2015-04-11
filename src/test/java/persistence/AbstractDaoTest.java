@@ -13,7 +13,7 @@ public class AbstractDaoTest {
 
     @BeforeClass
     public static void beforeClass() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpengergassePU");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("AnimalshelterPU");
         entityManager = factory.createEntityManager();
         entityManager.getTransaction().begin();
     }

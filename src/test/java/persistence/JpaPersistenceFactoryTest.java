@@ -19,7 +19,7 @@ public class JpaPersistenceFactoryTest {
 
     @BeforeClass
     public static void constructEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpengergassePU");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("AnimalshelterPU");
         entityManager = factory.createEntityManager();
     }
 
