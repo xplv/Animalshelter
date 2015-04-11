@@ -32,8 +32,7 @@ public class DaoAnimalTest extends AbstractDaoTest  {
     public void persistAnimalAndFindIt(){
         Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Miaumiau",LocalDate.now());
         daoAnimal.persist(a1);
-        Animal a2 = daoAnimal.findById(a1.getId());
-        Assert.assertEquals(a1,a2);
+        Assert.assertEquals(a1,daoAnimal.findById(a1.getId()));
     }
     @Test
     public void persistAnimalAndFindAll(){
