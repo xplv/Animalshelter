@@ -7,6 +7,7 @@
     <class>at.thurnhaeuser.animalshelter.model.Compound</class>
     <class>at.thurnhaeuser.animalshelter.model.Animal</class>
     <class>at.thurnhaeuser.animalshelter.model.Keeper</class>
+    <class>at.thurnhaeuser.animalshelter.model.Toy</class>
 
     <properties>
       <property name="hibernate.connection.autoReconnect" value="true"/>

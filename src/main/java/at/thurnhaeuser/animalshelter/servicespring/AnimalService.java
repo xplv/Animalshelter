@@ -34,7 +34,7 @@ public class AnimalService {
     }
 
     public AnimalOverviewDto insertAnimal(AnimalOverviewDto animalOverviewDto) {
-        Animal animal = new Animal(animalOverviewDto.getSpecies(), animalOverviewDto.getName(), animalOverviewDto.getBirthDate());
+        Animal animal = new Animal(Animal.AnimalSpecies.valueOf(animalOverviewDto.getSpecies()), animalOverviewDto.getName(), animalOverviewDto.getBirthDate());
         animalRepo.save(animal);
         return AnimalOverviewDto.from(animal);
     }
@@ -52,7 +52,7 @@ public class AnimalService {
 
         private String externalReference;
 
-        private Animal.AnimalSpecies species;
+        private String species;
 
         private String name;
 
@@ -67,7 +67,7 @@ public class AnimalService {
         public static AnimalOverviewDto from(Animal animal) {
             AnimalOverviewDto dto = new AnimalOverviewDto();
             dto.setExternalReference(animal.getExternalReference());
-            dto.setSpecies(animal.getSpecies());
+            dto.setSpecies(animal.getSpecies().toString());
             dto.setName(animal.getName());
             dto.setBirthDate(animal.getBirthDate());
             dto.setKeeperName(animal.getKeeper().getLastName());
@@ -84,11 +84,11 @@ public class AnimalService {
             this.externalReference = externalReference;
         }
 
-        public Animal.AnimalSpecies getSpecies() {
+        public String getSpecies() {
             return species;
         }
 
-        public void setSpecies(Animal.AnimalSpecies species) {
+        public void setSpecies(String species) {
             this.species = species;
         }
 

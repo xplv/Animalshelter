@@ -2,9 +2,6 @@ package at.thurnhaeuser.animalshelter.restmvc;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-/**
- * Created by joachim on 23/02/15.
- */
 public class RestMvcApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {

@@ -17,11 +17,13 @@ import java.util.UUID;
 @Entity
 @Table(name = "animal")
 public class Animal extends BaseEntity {
+
+    public static enum AnimalSpecies {Hund,Katze,Meerschweinchen};
+
     public AnimalSpecies getSpecies() {
         return species;
     }
 
-    public static enum AnimalSpecies {Hund, Katze, Meerschweinchen}
 
     @NotNull @Getter
     @Column(nullable = false)

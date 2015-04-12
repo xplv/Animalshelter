@@ -48,8 +48,8 @@ public class AnimalRepositoryImpl implements AnimalRepostitoryCustom {
 
         query.from(animal).
                 where(animal.species.eq(Animal.AnimalSpecies.Meerschweinchen)).
-                where(animal.keeper.eq(keeper)).
-                orderBy(animal.name.asc());
+                        where(animal.keeper.eq(keeper)).
+                                orderBy(animal.name.asc());
         return query.list(animal);
     }
 }
