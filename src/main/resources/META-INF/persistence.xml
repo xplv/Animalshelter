@@ -15,7 +15,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:database/simpleDb;create=true"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
       <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-      <property name="show_sql" value="false"/>
+      <property name="show_sql" value="true"/>
       <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
     </properties>
   </persistence-unit>

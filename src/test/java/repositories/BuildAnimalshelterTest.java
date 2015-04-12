@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import javax.validation.constraints.AssertTrue;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yanik on 4/12/15.
@@ -26,19 +28,7 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     private AnimalRepository animalRepo;
 
-    @Autowired
-    private CompoundRepository compoundRepo;
 
-    @Autowired
-    private KeeperRepository keeperRepo;
-
-    @Autowired
-    private ToyRepository toyRepo;
-
-    private Keeper k1;
-    private Keeper k2;
-    private Compound c1;
-    private Compound c2;
     private Animal a1;
     private Animal a2;
     private Animal a3;
@@ -51,15 +41,14 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
     @Before
     public void setup() {
         animalRepo.deleteAll();
-        compoundRepo.deleteAll();
-        keeperRepo.deleteAll();
-        toyRepo.deleteAll();
+
+        ArrayList<Animal> animals = new ArrayList<>();
 
         // create test data
-        k1 = new Keeper("Max","Muster", LocalDate.now(),LocalDate.now());
-        k2 = new Keeper("Peter","Pass",LocalDate.now(),LocalDate.now());
-        c1= new Compound(100,10);
-        c2= new Compound(200,20);
+        Keeper k1 = new Keeper("Max","Muster", LocalDate.now(),LocalDate.now());
+        Keeper k2 = new Keeper("Peter","Pass",LocalDate.now(),LocalDate.now());
+        Compound c1= new Compound(100,10);
+        Compound c2= new Compound(200,20);
         a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Bob",LocalDate.now(),k1,c1);
         a2 = new Animal(Animal.AnimalSpecies.Katze,"Frank",LocalDate.now(),k1,c2);
         a3 = new Animal(Animal.AnimalSpecies.Hund,"Paula",LocalDate.now(),k2,c1);
@@ -68,20 +57,17 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
         a6 = new Animal(Animal.AnimalSpecies.Hund,"Robby",LocalDate.now(),k1,c2);
         a7 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Pikachu",LocalDate.now(),k2,c1);
         a8 = new Animal(Animal.AnimalSpecies.Katze,"Bob Teil 2",LocalDate.now(),k2,c2);
-        compoundRepo.save(c1);
-        compoundRepo.save(c2);
 
-        keeperRepo.save(k1);
-        keeperRepo.save(k2);
+        animals.add(a1);
+        animals.add(a2);
+        animals.add(a3);
+        animals.add(a4);
+        animals.add(a5);
+        animals.add(a6);
+        animals.add(a7);
+        animals.add(a8);
 
-        animalRepo.save(a1);
-        animalRepo.save(a2);
-        animalRepo.save(a3);
-        animalRepo.save(a4);
-        animalRepo.save(a5);
-        animalRepo.save(a6);
-        animalRepo.save(a7);
-        animalRepo.save(a8);
+        animalRepo.save(animals);
     }
 
     @Test
