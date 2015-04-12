@@ -28,7 +28,7 @@ public class AnimalService {
     @Autowired
     private AnimalRepository animalRepo;
 
-    public Collection<AnimalOverviewDto> findAllProjects() {
+    public Collection<AnimalOverviewDto> findAllAnimals() {
         ArrayList<AnimalOverviewDto> animals = new ArrayList<>();
         for (Animal animal : animalRepo.findAll()) {
             animals.add(AnimalOverviewDto.from(animal));
