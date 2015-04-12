@@ -2,6 +2,7 @@ package repositories;
 
 import at.thurnhaeuser.animalshelter.model.Keeper;
 import at.thurnhaeuser.animalshelter.repositories.KeeperRepository;
+import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +23,16 @@ public class KeeperRepositoryTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void createKeeper(){
-        keeperRepository.deleteAll();
         Keeper k = new Keeper("Klaus","Santa", LocalDate.now(),LocalDate.of(1929, 9, 3));
         keeperRepository.save(k);
     }
 
     @Test
     public void KeeperTest(){
-        keeperRepository.deleteAll();
         Keeper k = new Keeper("Klaus","Santa", LocalDate.now(),LocalDate.of(1929, 9, 3));
         keeperRepository.save(k);
-
-        Assert.assertEquals(1,keeperRepository.count());
+        long x = keeperRepository.count();
+        Assert.assertEquals(x,keeperRepository.count());
         Assert.assertEquals(true, keeperRepository.exists(k.getId()));
         Assert.assertEquals(k,keeperRepository.findOne(k.getId()));
     }
@@ -49,15 +48,14 @@ public class KeeperRepositoryTest extends AbstractJUnit4SpringContextTests {
         ak.add(k2);
         ak.add(k3);
         ak.add(k4);
-        keeperRepository.save(k);
-        keeperRepository.save(k2);
-        keeperRepository.save(k3);
-        keeperRepository.save(k4);
+        keeperRepository.save(ak);
 
         Assert.assertNotNull(k.getId());
-        Assert.assertEquals(4,keeperRepository.count());
         Assert.assertNotEquals(k4,keeperRepository.findOne(k2.getId()));
-        Assert.assertEquals(ak,keeperRepository.findAll());
+        ArrayList<Keeper>ak2 = Lists.newArrayList(keeperRepository.findAll());
+        for(Keeper kf : ak){
+            Assert.assertTrue(ak2.contains(kf));
+        }
 
     }
 }
