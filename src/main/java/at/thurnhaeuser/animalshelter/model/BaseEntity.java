@@ -60,6 +60,6 @@ public class BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return hashCode()+"";
+        return ToStringBuilder.reflectionToString(this);
     }
 }
