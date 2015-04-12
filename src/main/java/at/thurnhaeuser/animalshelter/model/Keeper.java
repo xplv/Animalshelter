@@ -19,13 +19,13 @@ import java.util.List;
 @Entity
 @Table(name = "keeper")
 public class Keeper extends BaseEntity{
-    @Getter @Setter
+
     private String firstName;
-    @Getter @Setter
+
     private String lastName;
-    @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
+    @Convert(converter = LocalDatePersistenceConverter.class)
     private LocalDate birthDate;
-    @Convert(converter = LocalDatePersistenceConverter.class) @Getter @Setter
+    @Convert(converter = LocalDatePersistenceConverter.class)
     private LocalDate employedSince;
 
 
@@ -38,6 +38,38 @@ public class Keeper extends BaseEntity{
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.employedSince = employedSince;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public LocalDate getEmployedSince() {
+        return employedSince;
+    }
+
+    public void setEmployedSince(LocalDate employedSince) {
         this.employedSince = employedSince;
     }
 }

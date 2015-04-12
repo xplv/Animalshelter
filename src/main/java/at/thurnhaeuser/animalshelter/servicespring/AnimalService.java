@@ -52,25 +52,19 @@ public class AnimalService {
     }
 
     public static class AnimalOverviewDto {
-        @Getter @Setter
+
         private String externalReference;
 
-        @Getter @Setter
         private Animal.AnimalSpecies species;
 
-        @Getter @Setter
         private String name;
 
-        @Getter @Setter
         private LocalDate birthDate;
 
-        @Getter @Setter
         private String keeperName;
 
-        @Getter @Setter
         private Integer compoundId;
 
-        @Getter @Setter
         private Integer numberOfToys;
 
         public static AnimalOverviewDto from(Animal animal) {
@@ -83,6 +77,62 @@ public class AnimalService {
             dto.setCompoundId(animal.getCompound().getId());
             dto.setNumberOfToys(animal.getToys().size());
             return dto;
+        }
+
+        public String getExternalReference() {
+            return externalReference;
+        }
+
+        public void setExternalReference(String externalReference) {
+            this.externalReference = externalReference;
+        }
+
+        public Animal.AnimalSpecies getSpecies() {
+            return species;
+        }
+
+        public void setSpecies(Animal.AnimalSpecies species) {
+            this.species = species;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public LocalDate getBirthDate() {
+            return birthDate;
+        }
+
+        public void setBirthDate(LocalDate birthDate) {
+            this.birthDate = birthDate;
+        }
+
+        public String getKeeperName() {
+            return keeperName;
+        }
+
+        public void setKeeperName(String keeperName) {
+            this.keeperName = keeperName;
+        }
+
+        public Integer getCompoundId() {
+            return compoundId;
+        }
+
+        public void setCompoundId(Integer compoundId) {
+            this.compoundId = compoundId;
+        }
+
+        public Integer getNumberOfToys() {
+            return numberOfToys;
+        }
+
+        public void setNumberOfToys(Integer numberOfToys) {
+            this.numberOfToys = numberOfToys;
         }
     }
 }

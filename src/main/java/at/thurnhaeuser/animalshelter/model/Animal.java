@@ -27,23 +27,21 @@ public class Animal extends BaseEntity {
     @Column(nullable = false)
     private String externalReference;
 
-    @Setter
+
     private AnimalSpecies species;
-    @Getter
-    @Setter
+
     private String name;
     @Convert(converter = LocalDatePersistenceConverter.class)
-    @Getter
-    @Setter
+
     private LocalDate birthDate;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Compound compound;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Keeper keeper;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Collection<Toy> toys = new ArrayList<>();
 
     protected Animal(){
@@ -81,5 +79,45 @@ public class Animal extends BaseEntity {
 
     public void addToy(Toy t){
         toys.add(t);
+    }
+
+    public String getExternalReference() {
+        return externalReference;
+    }
+
+    public void setExternalReference(String externalReference) {
+        this.externalReference = externalReference;
+    }
+
+    public void setSpecies(AnimalSpecies species) {
+        this.species = species;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setCompound(Compound compound) {
+        this.compound = compound;
+    }
+
+    public void setKeeper(Keeper keeper) {
+        this.keeper = keeper;
+    }
+
+    public void setToys(Collection<Toy> toys) {
+        this.toys = toys;
     }
 }
