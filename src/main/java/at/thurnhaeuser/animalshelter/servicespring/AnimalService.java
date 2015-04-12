@@ -2,15 +2,12 @@ package at.thurnhaeuser.animalshelter.servicespring;
 
 import at.thurnhaeuser.animalshelter.model.Animal;
 import at.thurnhaeuser.animalshelter.repositories.AnimalRepository;
-import domainmodel.Project;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repositories.ProjectRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -63,7 +60,7 @@ public class AnimalService {
 
         private String keeperName;
 
-        private Integer compoundId;
+        private Long compoundId;
 
         private Integer numberOfToys;
 
@@ -119,11 +116,11 @@ public class AnimalService {
             this.keeperName = keeperName;
         }
 
-        public Integer getCompoundId() {
+        public Long getCompoundId() {
             return compoundId;
         }
 
-        public void setCompoundId(Integer compoundId) {
+        public void setCompoundId(Long compoundId) {
             this.compoundId = compoundId;
         }
 
