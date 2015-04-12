@@ -23,7 +23,6 @@ public class AnimalRepositoryTest  extends AbstractJUnit4SpringContextTests {
     private AnimalRepository animalRepo;
 
     private Keeper keeper;
-    private Keeper keeper2;
 
     @Before
     public void setup() {
@@ -32,16 +31,9 @@ public class AnimalRepositoryTest  extends AbstractJUnit4SpringContextTests {
 
         // create test data
         keeper = new Keeper("Max","Muster",LocalDate.now(),LocalDate.now());
-        keeper2 = new Keeper("Peter","Muster",LocalDate.now(),LocalDate.now());
         Compound compound = new Compound(100,10);
-        Animal a1 = new Animal(Animal.AnimalSpecies.Katze,"Bob",LocalDate.now(),keeper,compound);
-        Animal a2 = new Animal(Animal.AnimalSpecies.Hund,"Hans",LocalDate.now(),keeper,compound);
-        Animal a3 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Franz",LocalDate.now(),keeper,compound);
-        Animal a4 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Tanz",LocalDate.now(),keeper2,compound);
+        Animal a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Bob",LocalDate.now(),keeper,compound);
         animalRepo.save(a1);
-        animalRepo.save(a2);
-        //animalRepo.save(a3);
-        //animalRepo.save(a4);
     }
 
     @Test
@@ -67,10 +59,7 @@ public class AnimalRepositoryTest  extends AbstractJUnit4SpringContextTests {
     public void testFindBySpecies(){
         List<Animal> animals = animalRepo.findBySpecies(Animal.AnimalSpecies.Meerschweinchen);
         Assert.assertNotNull(animals);
-        //Assert.assertEquals(2, animals.size());
-
-        for(Animal a : animals){
-            //Assert.assertEquals(a.getSpecies(),Animal.AnimalSpecies.Meerschweinchen);
-        }
+        Assert.assertEquals(1, animals.size());
+        Assert.assertEquals(animals.get(0).getSpecies(),Animal.AnimalSpecies.Meerschweinchen);
     }
 }
