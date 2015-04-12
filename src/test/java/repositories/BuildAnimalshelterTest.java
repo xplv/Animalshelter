@@ -28,25 +28,30 @@ import java.util.List;
 public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     private AnimalRepository animalRepo;
-
     @Autowired
     private KeeperRepository keeperRepo;
-
     @Autowired
     private CompoundRepository compoundRepo;
+    @Autowired
+    private ToyRepository toyRepo;
 
     private ArrayList<Animal> animals;
     private ArrayList<Compound> compounds;
     private ArrayList<Keeper> keepers;
+    private ArrayList<Toy> toys;
+
     @Before
     public void setup() {
         animalRepo.deleteAll();
+        keeperRepo.deleteAll();
+        compoundRepo.deleteAll();
+        toyRepo.deleteAll();
 
         animals = new ArrayList<>();
         compounds = new ArrayList<>();
         keepers = new ArrayList<>();
+        toys = new ArrayList<>();
 
-        // create test data
         Keeper k1 = new Keeper("Max","Muster", LocalDate.now(),LocalDate.now());
         Keeper k2 = new Keeper("Peter","Pass",LocalDate.now(),LocalDate.now());
         keepers.add(k1);
@@ -64,6 +69,10 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
         Animal a7 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Pikachu",LocalDate.now(),k2,c1);
         Animal a8 = new Animal(Animal.AnimalSpecies.Katze,"Bob Teil 2",LocalDate.now(),k2,c2);
 
+        Toy t1 = new Toy(Toy.Material.wood, Toy.Color.green,"Würfel",10);
+        Toy t2 = new Toy(Toy.Material.rubber, Toy.Color.red,"Ball",10);
+        a1.addToy(t1);
+        a1.addToy(t2);
         animals.add(a1);
         animals.add(a2);
         animals.add(a3);
@@ -81,7 +90,10 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
         Assert.assertEquals(animalRepo.findOne(animals.get(0).getId()), animals.get(0));
         Assert.assertEquals(animalRepo.findOne(animals.get(1).getId()),animals.get(1));
         Assert.assertNotEquals(animalRepo.findOne(animals.get(0).getId()), animals.get(1));
+    }
 
+    @Test
+    public void testFindAll(){
         ArrayList<Animal> animalsFromReps = Lists.newArrayList(animalRepo.findAll());
         for(Animal a : animals){
             Assert.assertTrue(animalsFromReps.contains(a));
@@ -93,6 +105,30 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
         ArrayList<Keeper> keepersFromReps = Lists.newArrayList(keeperRepo.findAll());
         for(Keeper k : keepers){
             Assert.assertTrue(keepersFromReps.contains(k));
+        }
+        ArrayList<Toy> toysFromReps = Lists.newArrayList(toyRepo.findAll());
+        for(Toy t : toys){
+            Assert.assertTrue(toysFromReps.contains(t));
+        }
+    }
+
+    @Test
+    public void testFindBySpecies(){
+        ArrayList<Animal> animalsFromReps = Lists.newArrayList(animalRepo.findBySpecies(Animal.AnimalSpecies.Meerschweinchen));
+        for(Animal a : animals){
+            if(a.getSpecies() == Animal.AnimalSpecies.Meerschweinchen){
+                Assert.assertTrue(animalsFromReps.contains(a));
+            }
+        }
+    }
+
+    @Test
+    public void testFindAllMeerschweinchenFromKeeper(){
+        ArrayList<Animal> animalsFromReps = Lists.newArrayList(animalRepo.findAllMeerschweinchenFromKeeper(keepers.get(1)));
+        for(Animal a : animals){
+            if(a.getSpecies() == Animal.AnimalSpecies.Meerschweinchen && a.getKeeper() == keepers.get(1)){
+                Assert.assertTrue(animalsFromReps.contains(a));
+            }
         }
     }
 }

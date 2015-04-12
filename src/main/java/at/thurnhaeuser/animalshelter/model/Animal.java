@@ -3,7 +3,6 @@ package at.thurnhaeuser.animalshelter.model;
 import at.thurnhaeuser.animalshelter.LocalDatePersistenceConverter;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,13 +17,16 @@ import java.util.UUID;
 @Entity
 @Table(name = "animal")
 public class Animal extends BaseEntity {
+    public AnimalSpecies getSpecies() {
+        return species;
+    }
+
     public static enum AnimalSpecies {Hund, Katze, Meerschweinchen}
 
     @NotNull @Getter
     @Column(nullable = false)
     private String externalReference;
 
-    @Getter
     @Setter
     private AnimalSpecies species;
     @Getter
@@ -41,8 +43,8 @@ public class Animal extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
     private Keeper keeper;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
-    private Collection<Toy> toy = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Getter
+    private Collection<Toy> toys = new ArrayList<>();
 
     protected Animal(){
         super();
@@ -61,11 +63,15 @@ public class Animal extends BaseEntity {
         return compound;
     }
 
-    public Collection<Toy> getToy() {
-        return toy;
+    public Collection<Toy> getToys() {
+        return toys;
     }
 
     public Keeper getKeeper() {
         return keeper;
+    }
+
+    public void addToy(Toy t){
+        toys.add(t);
     }
 }
