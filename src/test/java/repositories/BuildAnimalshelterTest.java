@@ -28,6 +28,11 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     private AnimalRepository animalRepo;
 
+    @Autowired
+    private KeeperRepository keeperRepo;
+
+    @Autowired
+    private CompoundRepository compoundRepo;
 
     private Animal a1;
     private Animal a2;
@@ -72,6 +77,8 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testFindOne(){
-        Assert.assertTrue(true);
+        Assert.assertEquals(animalRepo.findOne(a1.getId()), a1);
+        Assert.assertEquals(animalRepo.findOne(a2.getId()),a2);
+        Assert.assertNotEquals(animalRepo.findOne(a1.getId()),a2);
     }
 }
