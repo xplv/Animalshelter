@@ -8,6 +8,7 @@ import at.thurnhaeuser.animalshelter.repositories.AnimalRepository;
 import at.thurnhaeuser.animalshelter.repositories.CompoundRepository;
 import at.thurnhaeuser.animalshelter.repositories.KeeperRepository;
 import at.thurnhaeuser.animalshelter.repositories.ToyRepository;
+import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,34 +35,34 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     private CompoundRepository compoundRepo;
 
-    private Animal a1;
-    private Animal a2;
-    private Animal a3;
-    private Animal a4;
-    private Animal a5;
-    private Animal a6;
-    private Animal a7;
-    private Animal a8;
-
+    private ArrayList<Animal> animals;
+    private ArrayList<Compound> compounds;
+    private ArrayList<Keeper> keepers;
     @Before
     public void setup() {
         animalRepo.deleteAll();
 
-        ArrayList<Animal> animals = new ArrayList<>();
+        animals = new ArrayList<>();
+        compounds = new ArrayList<>();
+        keepers = new ArrayList<>();
 
         // create test data
         Keeper k1 = new Keeper("Max","Muster", LocalDate.now(),LocalDate.now());
         Keeper k2 = new Keeper("Peter","Pass",LocalDate.now(),LocalDate.now());
+        keepers.add(k1);
+        keepers.add(k2);
         Compound c1= new Compound(100,10);
         Compound c2= new Compound(200,20);
-        a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Bob",LocalDate.now(),k1,c1);
-        a2 = new Animal(Animal.AnimalSpecies.Katze,"Frank",LocalDate.now(),k1,c2);
-        a3 = new Animal(Animal.AnimalSpecies.Hund,"Paula",LocalDate.now(),k2,c1);
-        a4 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Anna",LocalDate.now(),k2,c2);
-        a5 = new Animal(Animal.AnimalSpecies.Katze,"Jenny",LocalDate.now(),k1,c1);
-        a6 = new Animal(Animal.AnimalSpecies.Hund,"Robby",LocalDate.now(),k1,c2);
-        a7 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Pikachu",LocalDate.now(),k2,c1);
-        a8 = new Animal(Animal.AnimalSpecies.Katze,"Bob Teil 2",LocalDate.now(),k2,c2);
+        compounds.add(c1);
+        compounds.add(c2);
+        Animal a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Bob",LocalDate.now(),k1,c1);
+        Animal a2 = new Animal(Animal.AnimalSpecies.Katze,"Frank",LocalDate.now(),k1,c2);
+        Animal a3 = new Animal(Animal.AnimalSpecies.Hund,"Paula",LocalDate.now(),k2,c1);
+        Animal a4 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Anna",LocalDate.now(),k2,c2);
+        Animal a5 = new Animal(Animal.AnimalSpecies.Katze,"Jenny",LocalDate.now(),k1,c1);
+        Animal a6 = new Animal(Animal.AnimalSpecies.Hund,"Robby",LocalDate.now(),k1,c2);
+        Animal a7 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Pikachu",LocalDate.now(),k2,c1);
+        Animal a8 = new Animal(Animal.AnimalSpecies.Katze,"Bob Teil 2",LocalDate.now(),k2,c2);
 
         animals.add(a1);
         animals.add(a2);
@@ -77,8 +78,21 @@ public class BuildAnimalshelterTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testFindOne(){
-        Assert.assertEquals(animalRepo.findOne(a1.getId()), a1);
-        Assert.assertEquals(animalRepo.findOne(a2.getId()),a2);
-        Assert.assertNotEquals(animalRepo.findOne(a1.getId()),a2);
+        Assert.assertEquals(animalRepo.findOne(animals.get(0).getId()), animals.get(0));
+        Assert.assertEquals(animalRepo.findOne(animals.get(1).getId()),animals.get(1));
+        Assert.assertNotEquals(animalRepo.findOne(animals.get(0).getId()), animals.get(1));
+
+        ArrayList<Animal> animalsFromReps = Lists.newArrayList(animalRepo.findAll());
+        for(Animal a : animals){
+            Assert.assertTrue(animalsFromReps.contains(a));
+        }
+        ArrayList<Compound> compoundsFromReps = Lists.newArrayList(compoundRepo.findAll());
+        for(Compound c : compounds){
+            Assert.assertTrue(compoundsFromReps.contains(c));
+        }
+        ArrayList<Keeper> keepersFromReps = Lists.newArrayList(keeperRepo.findAll());
+        for(Keeper k : keepers){
+            Assert.assertTrue(keepersFromReps.contains(k));
+        }
     }
 }
