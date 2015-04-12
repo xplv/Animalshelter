@@ -1,10 +1,11 @@
 package at.thurnhaeuser.animalshelter.restmvc;
 
-import at.thurnhaeuser.animalshelter.model.Animal;
 import at.thurnhaeuser.animalshelter.servicespring.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+
 
 import java.util.Collection;
 
@@ -12,7 +13,7 @@ import java.util.Collection;
  * Created by philip on 12.04.2015.
  */
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/animals")
 public class AnimalRestController {
 
     @Autowired
