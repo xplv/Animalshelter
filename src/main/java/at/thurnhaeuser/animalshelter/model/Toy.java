@@ -27,6 +27,7 @@ public class Toy extends BaseEntity {
     @Getter @Setter
     private double sizeCM;
 
+    protected Toy(){super();}
     public Toy(Material mat, Color col, String name, double sizeCM){
         super();
         this.mat = mat;
@@ -34,4 +35,6 @@ public class Toy extends BaseEntity {
         this.name = name;
         this.sizeCM = sizeCM;
     }
+
+
 }
