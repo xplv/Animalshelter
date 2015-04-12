@@ -2,6 +2,7 @@ package repositories;
 
 import at.thurnhaeuser.animalshelter.model.Compound;
 import at.thurnhaeuser.animalshelter.repositories.CompoundRepository;
+import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +21,22 @@ public class CompoundRepositoryTest extends AbstractJUnit4SpringContextTests{
 
     @Test
     public void createCompound(){
-        compoundRepository.deleteAll();
-
         Compound c = new Compound(149.0,34);
         compoundRepository.save(c);
     }
 
     @Test
     public void CompoundTest(){
-        compoundRepository.deleteAll();
-
         Compound c = new Compound(149.0,34);
         compoundRepository.save(c);
-
-        Assert.assertEquals(1,compoundRepository.count());
+        long x = compoundRepository.count();
+        Assert.assertEquals(x,compoundRepository.count());
         Assert.assertEquals(true, compoundRepository.exists(c.getId()));
-        Assert.assertEquals(c,compoundRepository.findOne(c.getId()));
+        Assert.assertEquals(c, compoundRepository.findOne(c.getId()));
     }
 
     @Test
     public void FindCompoundByIdAndFindAll(){
-        compoundRepository.deleteAll();
         ArrayList<Compound> ac = new ArrayList<>();
         Compound c = new Compound(149.0,31);
         Compound c2 = new Compound(191.0,64);
@@ -50,14 +46,13 @@ public class CompoundRepositoryTest extends AbstractJUnit4SpringContextTests{
         ac.add(c2);
         ac.add(c3);
         ac.add(c4);
-        compoundRepository.save(c);
-        compoundRepository.save(c2);
-        compoundRepository.save(c3);
-        compoundRepository.save(c4);
+        compoundRepository.save(ac);
 
         Assert.assertNotNull(c.getId());
-        Assert.assertEquals(4,compoundRepository.count());
         Assert.assertNotEquals(c2, compoundRepository.findOne(c4.getId()));
-        Assert.assertEquals(ac,compoundRepository.findAll());
+        ArrayList<Compound> ac2 = Lists.newArrayList(compoundRepository.findAll());
+        for(Compound cf : ac) {
+            Assert.assertTrue(ac2.contains(cf));
+        }
     }
 }
