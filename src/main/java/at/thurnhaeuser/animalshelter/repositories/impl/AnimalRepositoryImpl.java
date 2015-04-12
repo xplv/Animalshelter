@@ -19,7 +19,7 @@ public class AnimalRepositoryImpl implements AnimalRepostitoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<Animal> findWithQueryDsl(Keeper keeper) {
+    public List<Animal> findByKeeper(Keeper keeper) {
         JPAQuery query = new JPAQuery(entityManager);
         QAnimal animal = QAnimal.animal;
 
@@ -30,4 +30,26 @@ public class AnimalRepositoryImpl implements AnimalRepostitoryCustom {
         return query.list(animal);
     }
 
+    @Override
+    public List<Animal> findBySpecies(Animal.AnimalSpecies species){
+        JPAQuery query = new JPAQuery(entityManager);
+        QAnimal animal = QAnimal.animal;
+
+        query.from(animal).
+                where(animal.species.eq(species)).
+                orderBy(animal.name.asc());
+        return query.list(animal);
+    }
+
+    @Override
+    public List<Animal> findAllMeerschweinchenFromKeeper(Keeper keeper){
+        JPAQuery query = new JPAQuery(entityManager);
+        QAnimal animal = QAnimal.animal;
+
+        query.from(animal).
+                where(animal.species.eq(Animal.AnimalSpecies.Meerschweinchen)).
+                where(animal.keeper.eq(keeper)).
+                orderBy(animal.name.asc());
+        return query.list(animal);
+    }
 }

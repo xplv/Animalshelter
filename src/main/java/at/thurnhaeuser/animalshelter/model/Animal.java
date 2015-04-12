@@ -44,6 +44,9 @@ public class Animal extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) @Setter
     private Collection<Toy> toy = new ArrayList<>();
 
+    protected Animal(){
+        super();
+    }
     public Animal(AnimalSpecies species, String name, LocalDate birthDate,Keeper keeper,Compound compound) {
         super();
         this.externalReference = UUID.randomUUID().toString();

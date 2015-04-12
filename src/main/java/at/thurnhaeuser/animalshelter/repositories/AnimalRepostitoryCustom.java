@@ -9,5 +9,7 @@ import java.util.List;
  * Created by yanik on 4/11/15.
  */
 public interface AnimalRepostitoryCustom  {
-    List<Animal> findWithQueryDsl(Keeper keeper);
+    List<Animal> findByKeeper(Keeper keeper);
+    List<Animal> findBySpecies(Animal.AnimalSpecies species);
+    List<Animal> findAllMeerschweinchenFromKeeper(Keeper keeper);
 }
