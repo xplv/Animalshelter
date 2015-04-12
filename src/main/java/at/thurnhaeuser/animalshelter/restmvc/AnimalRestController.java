@@ -24,7 +24,7 @@ public class AnimalRestController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @RequestMapping(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)
     public AnimalService.AnimalOverviewDto insertAnimal(@RequestBody AnimalService.AnimalOverviewDto animalOverviewDto){
         return animalService.insertAnimal(animalOverviewDto);
     }
