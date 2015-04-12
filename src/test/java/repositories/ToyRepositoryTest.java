@@ -40,7 +40,7 @@ public class ToyRepositoryTest extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
-    public void FindToyByID(){
+    public void FindToyByIDandFindAll(){
         toyRepository.deleteAll();
         ArrayList<Toy> at = new ArrayList<>();
         Toy t = new Toy(Toy.Material.wood,Toy.Color.red,"KA",145.9);
