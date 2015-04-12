@@ -26,10 +26,8 @@ public class AnimalRepositoryTest  extends AbstractJUnit4SpringContextTests {
 
     @Before
     public void setup() {
-        // remove existing data
         animalRepo.deleteAll();
 
-        // create test data
         keeper = new Keeper("Max","Muster",LocalDate.now(),LocalDate.now());
         Compound compound = new Compound(100,10);
         Animal a1 = new Animal(Animal.AnimalSpecies.Meerschweinchen,"Bob",LocalDate.now(),keeper,compound);
