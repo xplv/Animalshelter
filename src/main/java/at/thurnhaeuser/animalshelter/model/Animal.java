@@ -59,12 +59,11 @@ public class Animal extends BaseEntity {
         this.compound = compound;
     }
 
-    public Animal(AnimalSpecies species, String name, LocalDate birthDate) {
+    public Animal(AnimalSpecies species, String name) {
         super();
         this.externalReference = UUID.randomUUID().toString();
         this.species = species;
         this.name = name;
-        this.birthDate = birthDate;
     }
 
     public Compound getCompound() {
