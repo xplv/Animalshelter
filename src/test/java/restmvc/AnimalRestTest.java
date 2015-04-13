@@ -39,7 +39,8 @@ public class AnimalRestTest extends AbstractRestControllerTest{
     @Test
     public void verifySimplePostAnimal() throws Exception {
         ObjectNode contentJson = new ObjectMapper().createObjectNode();
-        contentJson.put("Hund", "DogDog");
+        contentJson.put("species", "Hund");
+        contentJson.put("name","WauWau");
         mockMvc.perform(post("/animals").
                 contentType(MediaType.APPLICATION_JSON).
                 content(contentJson.toString())).
